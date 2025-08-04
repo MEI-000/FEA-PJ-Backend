@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { UseGuards, Get } from '@nestjs/common';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { RegisterUserDto } from './dto/register-user.dto';
+import { User } from '../auth/user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -17,9 +18,7 @@ export class AuthController {
     return this.authService.login(body);
   }
 
-  @Get('me')
   @UseGuards(JwtAuthGuard)
-  getProfile(@Body() body: any) {
-    return { message: 'You are logged in!' };
-  }
+  @Get('profile')
+  getProfile(@User('id') userId: string) {}
 }
