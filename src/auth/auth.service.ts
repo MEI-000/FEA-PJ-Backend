@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './schemas/user.schema';
 import { Model } from 'mongoose';
@@ -20,7 +20,9 @@ export class AuthService {
       $or: [{ username }, { email }],
     });
     if (existingUser) {
-      throw new Error('Username or email already taken');
+      throw new BadRequestException(
+        'Username or email already taken, please try another one',
+      );
     }
 
     // encrypt pwd
