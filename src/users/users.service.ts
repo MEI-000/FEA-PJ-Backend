@@ -1,8 +1,9 @@
 // users.service.ts
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
 export class UsersService {
@@ -19,6 +20,29 @@ export class UsersService {
       email: user.email,
       avatar: user.avatar || null,
       createdAt: user.createdAt,
+    };
+  }
+  async updateUserProfile(userId: string, updateData: UpdateProfileDto) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    // ensure username is unique
+    if (updateData.username && updateData.username !== user.username) {
+      const existing = await this.userModel.findOne({ username: updateData.username });
+      if (existing) {
+        throw new BadRequestException('Username already exists');
+      }
+      user.username = updateData.username;
+    }
+
+    // possbile othersupdates like email, password, ...
+
+    await user.save();
+    return {
+      message: 'Profile updated successfully',
+      username: user.username,
     };
   }
 }
