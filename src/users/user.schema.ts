@@ -17,6 +17,12 @@ export class User {
   @Prop()
   avatar?: string;
 
+  @Prop()
+  contact?: string;
+
+  @Prop()
+  preference?: string;
+
   createdAt?: Date;
   updatedAt?: Date;
 }

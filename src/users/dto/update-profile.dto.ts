@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsString, MinLength, Matches } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  MinLength,
+  Matches,
+  IsOptional,
+} from 'class-validator';
 
 export class UpdateProfileDto {
   @IsNotEmpty()
@@ -8,4 +14,12 @@ export class UpdateProfileDto {
     message: 'Username can only contain letters, numbers, and underscores',
   })
   username?: string;
+
+  @IsOptional()
+  @IsString()
+  contact?: string;
+
+  @IsOptional()
+  @IsString()
+  preference?: string;
 }

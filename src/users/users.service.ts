@@ -1,5 +1,9 @@
 // users.service.ts
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
@@ -18,6 +22,9 @@ export class UsersService {
     return {
       username: user.username,
       email: user.email,
+      contact: user.contact,
+      preference: user.preference,
+      // possible more fields
       avatar: user.avatar || null,
       createdAt: user.createdAt,
     };
@@ -30,19 +37,32 @@ export class UsersService {
 
     // ensure username is unique
     if (updateData.username && updateData.username !== user.username) {
-      const existing = await this.userModel.findOne({ username: updateData.username });
+      const existing = await this.userModel.findOne({
+        username: updateData.username,
+      });
       if (existing) {
         throw new BadRequestException('Username already exists');
       }
       user.username = updateData.username;
     }
+    // Update contact
+    if (updateData.contact !== undefined) {
+      user.contact = updateData.contact;
+    }
 
-    // possbile othersupdates like email, password, ...
+    // Update preference
+    if (updateData.preference !== undefined) {
+      user.preference = updateData.preference;
+    }
+    // possbile more fields like email, password, ...
 
     await user.save();
     return {
       message: 'Profile updated successfully',
       username: user.username,
+      //possible more fields
+      contact: user.contact,
+      preference: user.preference,
     };
   }
 }
