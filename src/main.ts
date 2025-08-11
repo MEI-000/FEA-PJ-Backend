@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { json } from 'express';
+import * as express from 'express';
+import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './filters/all-exceptions.filter';
 
@@ -20,6 +22,7 @@ async function bootstrap() {
   );
 
   app.use(json());
+  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
   //CORS
   app.enableCors({
