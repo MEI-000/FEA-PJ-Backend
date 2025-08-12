@@ -4,6 +4,7 @@ import {
   Get,
   UseGuards,
   Req,
+  Param,
   Body,
   UseInterceptors,
   UploadedFile
@@ -45,6 +46,24 @@ export class TweetController {
     @Get('mine')
     @UseGuards(JwtAuthGuard)
     getOwnTweets(@Req() req) {
-    return this.tweetsService.getTweetsByUser(req.user.username);
+        return this.tweetsService.getTweetsByUser(req.user.username);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get(':id')
+    async getTweetById(@Param('id') id: string) {
+        return this.tweetsService.findById(id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post(':id/like')
+    async like(@Param('id') id: string, @Req() req) {
+        return this.tweetsService.like(id, req.user.username);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post(':id/retweet')
+    async retweet(@Param('id') id: string, @Req() req) {
+        return this.tweetsService.retweet(id, req.user.userId, req.user.username);
     }
 }
