@@ -1,0 +1,931 @@
+{
+	"info": {
+		"_postman_id": "f617f535-5582-4162-b791-898d90d7f1b8",
+		"name": "FEA-project",
+		"description": "Before testing the users/profile, plz go to auth/login to get the token from its response first (will need it in the header, replace with the latest token u have get)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10962612"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "auth/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"ABc\",\r\n  \"email\": \"abc@gmail.com\",\r\n  \"password\": \"123456Abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@gmail.com\",\r\n  \"password\": \"123456Abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "users/profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODhlNzQ5OWU0MDk1YjkwMTQ5NGNiNjEiLCJ1c2VybmFtZSI6ImFoYSIsImlhdCI6MTc1NDk5OTk4MiwiZXhwIjoxNzU1NjA0NzgyfQ.WfIafyAeN_oZaXzsEfRvpIvNhd8LcZaecd80YsyC6OU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODhlNzQ5OWU0MDk1YjkwMTQ5NGNiNjEiLCJ1c2VybmFtZSI6ImFoYSIsImlhdCI6MTc1NDk5OTk4MiwiZXhwIjoxNzU1NjA0NzgyfQ.WfIafyAeN_oZaXzsEfRvpIvNhd8LcZaecd80YsyC6OU",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"newname\",\r\n  \"contact\": \"123-456-7890\",\r\n  \"preference\": \"dark mode\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/users/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tweets",
+			"item": [
+				{
+					"name": "get tweets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tweets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tweets"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/tweets",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"tweets"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1399"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"577-zsdP6/QULCgtAaYGHWAjjVcWliY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:14:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"689aa0cbec57cdde774c9d6c\",\n        \"content\": \"cat photos\",\n        \"mediaUrl\": \"/uploads/1754527008545-427486823.jpg\",\n        \"userName\": \"maria123\",\n        \"likes\": [],\n        \"retweetCount\": 0,\n        \"originalTweetId\": \"6893f520347a22f8bd426a3b\",\n        \"createdAt\": \"2025-08-12T02:02:51.416Z\",\n        \"updatedAt\": \"2025-08-12T02:02:51.416Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689a96bb29119c406940f687\",\n        \"content\": \"Mexico photos!!\",\n        \"mediaUrl\": \"/uploads/1754529828809-605045045.JPG\",\n        \"userName\": \"giannela\",\n        \"likes\": [\n            \"maria123\"\n        ],\n        \"retweetCount\": 0,\n        \"originalTweetId\": \"68940024347a22f8bd426c08\",\n        \"createdAt\": \"2025-08-12T01:19:55.468Z\",\n        \"updatedAt\": \"2025-08-12T01:50:36.387Z\",\n        \"__v\": 3\n    },\n    {\n        \"originalTweetId\": null,\n        \"_id\": \"68940024347a22f8bd426c08\",\n        \"content\": \"Mexico photos!!\",\n        \"mediaUrl\": \"/uploads/1754529828809-605045045.JPG\",\n        \"userName\": \"maria123\",\n        \"createdAt\": \"2025-08-07T01:23:48.947Z\",\n        \"updatedAt\": \"2025-08-12T01:19:55.472Z\",\n        \"__v\": 9,\n        \"likes\": [\n            null\n        ],\n        \"retweetCount\": 1\n    },\n    {\n        \"originalTweetId\": null,\n        \"_id\": \"6893f520347a22f8bd426a3b\",\n        \"content\": \"cat photos\",\n        \"mediaUrl\": \"/uploads/1754527008545-427486823.jpg\",\n        \"userName\": \"giannela\",\n        \"createdAt\": \"2025-08-07T00:36:48.580Z\",\n        \"updatedAt\": \"2025-08-12T02:02:51.419Z\",\n        \"__v\": 1,\n        \"likes\": [],\n        \"retweetCount\": 1\n    },\n    {\n        \"likes\": [],\n        \"retweetCount\": 0,\n        \"originalTweetId\": null,\n        \"_id\": \"6893f46e347a22f8bd426a13\",\n        \"content\": \"holaa\",\n        \"mediaUrl\": \"/uploads/1754526830646-266950915.jpg\",\n        \"userName\": \"giannela\",\n        \"createdAt\": \"2025-08-07T00:33:50.717Z\",\n        \"updatedAt\": \"2025-08-07T00:33:50.717Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get mine tweets",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODkzYzFjYjFmY2RmN2YyMzRiYTE0MTMiLCJ1c2VybmFtZSI6ImdpYW5uZWxhIiwiaWF0IjoxNzU1MjE0MzQwLCJleHAiOjE3NTU4MTkxNDB9.tcQM5b-fxAKaV15_eDEloR9Vv2Dei1p31pvlRO3Govs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tweets/mine",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tweets",
+								"mine"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/tweets/mine",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"tweets",
+										"mine"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1357"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54d-2Zc1H4BDncQq4JIY8pvf0yt5Mi4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:32:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"689e7152f4b15f90f7f29d3d\",\n        \"content\": \"Hola\",\n        \"mediaUrl\": \"/uploads/1755214161998-418745067.jpg\",\n        \"userName\": \"giannela\",\n        \"likes\": [],\n        \"retweetCount\": 0,\n        \"originalTweetId\": null,\n        \"createdAt\": \"2025-08-14T23:29:22.016Z\",\n        \"updatedAt\": \"2025-08-14T23:29:22.016Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689e709ff4b15f90f7f29d04\",\n        \"content\": \"hola!\",\n        \"mediaUrl\": \"/uploads/1755213983778-640521090.JPG\",\n        \"userName\": \"giannela\",\n        \"likes\": [],\n        \"retweetCount\": 0,\n        \"originalTweetId\": null,\n        \"createdAt\": \"2025-08-14T23:26:23.875Z\",\n        \"updatedAt\": \"2025-08-14T23:26:23.875Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689a96bb29119c406940f687\",\n        \"content\": \"Mexico photos!!\",\n        \"mediaUrl\": \"/uploads/1754529828809-605045045.JPG\",\n        \"userName\": \"giannela\",\n        \"likes\": [\n            \"maria123\"\n        ],\n        \"retweetCount\": 0,\n        \"originalTweetId\": \"68940024347a22f8bd426c08\",\n        \"createdAt\": \"2025-08-12T01:19:55.468Z\",\n        \"updatedAt\": \"2025-08-12T01:50:36.387Z\",\n        \"__v\": 3\n    },\n    {\n        \"originalTweetId\": null,\n        \"_id\": \"6893f520347a22f8bd426a3b\",\n        \"content\": \"cat photos\",\n        \"mediaUrl\": \"/uploads/1754527008545-427486823.jpg\",\n        \"userName\": \"giannela\",\n        \"createdAt\": \"2025-08-07T00:36:48.580Z\",\n        \"updatedAt\": \"2025-08-12T02:02:51.419Z\",\n        \"__v\": 1,\n        \"likes\": [],\n        \"retweetCount\": 1\n    },\n    {\n        \"likes\": [],\n        \"retweetCount\": 0,\n        \"originalTweetId\": null,\n        \"_id\": \"6893f46e347a22f8bd426a13\",\n        \"content\": \"holaa\",\n        \"mediaUrl\": \"/uploads/1754526830646-266950915.jpg\",\n        \"userName\": \"giannela\",\n        \"createdAt\": \"2025-08-07T00:33:50.717Z\",\n        \"updatedAt\": \"2025-08-07T00:33:50.717Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "get tweet by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODkzYzFjYjFmY2RmN2YyMzRiYTE0MTMiLCJ1c2VybmFtZSI6ImdpYW5uZWxhIiwiaWF0IjoxNzU1MjE0MzQwLCJleHAiOjE3NTU4MTkxNDB9.tcQM5b-fxAKaV15_eDEloR9Vv2Dei1p31pvlRO3Govs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tweets/689e7152f4b15f90f7f29d3d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tweets",
+								"689e7152f4b15f90f7f29d3d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/tweets/689e7152f4b15f90f7f29d3d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"tweets",
+										"689e7152f4b15f90f7f29d3d"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "260"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"104-N7O9K7s+fjGNvTCnigFl02+jvo0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:33:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"689e7152f4b15f90f7f29d3d\",\n    \"content\": \"Hola\",\n    \"mediaUrl\": \"/uploads/1755214161998-418745067.jpg\",\n    \"userName\": \"giannela\",\n    \"likes\": [],\n    \"retweetCount\": 0,\n    \"originalTweetId\": null,\n    \"createdAt\": \"2025-08-14T23:29:22.016Z\",\n    \"updatedAt\": \"2025-08-14T23:29:22.016Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "like tweet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODkzYzFjYjFmY2RmN2YyMzRiYTE0MTMiLCJ1c2VybmFtZSI6ImdpYW5uZWxhIiwiaWF0IjoxNzU1MjE0MzQwLCJleHAiOjE3NTU4MTkxNDB9.tcQM5b-fxAKaV15_eDEloR9Vv2Dei1p31pvlRO3Govs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tweets/689e7152f4b15f90f7f29d3d/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tweets",
+								"689e7152f4b15f90f7f29d3d",
+								"like"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/tweets/689e7152f4b15f90f7f29d3d/like",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"tweets",
+										"689e7152f4b15f90f7f29d3d",
+										"like"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "270"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10e-q2bEadhLwpBbwPFKC1LoNoMJAQM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:36:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"689e7152f4b15f90f7f29d3d\",\n    \"content\": \"Hola\",\n    \"mediaUrl\": \"/uploads/1755214161998-418745067.jpg\",\n    \"userName\": \"giannela\",\n    \"likes\": [\n        \"giannela\"\n    ],\n    \"retweetCount\": 0,\n    \"originalTweetId\": null,\n    \"createdAt\": \"2025-08-14T23:29:22.016Z\",\n    \"updatedAt\": \"2025-08-14T23:36:10.477Z\",\n    \"__v\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "retweet tweet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODkzYzFjYjFmY2RmN2YyMzRiYTE0MTMiLCJ1c2VybmFtZSI6ImdpYW5uZWxhIiwiaWF0IjoxNzU1MjE0MzQwLCJleHAiOjE3NTU4MTkxNDB9.tcQM5b-fxAKaV15_eDEloR9Vv2Dei1p31pvlRO3Govs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/tweets/689aa0cbec57cdde774c9d6c/retweet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tweets",
+								"689aa0cbec57cdde774c9d6c",
+								"retweet"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/tweets/689aa0cbec57cdde774c9d6c/retweet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"tweets",
+										"689aa0cbec57cdde774c9d6c",
+										"retweet"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "288"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"120-/U3R3aPJeAhIRIYsjGNEifMkSvQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:39:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"cat photos\",\n    \"mediaUrl\": \"/uploads/1754527008545-427486823.jpg\",\n    \"userName\": \"giannela\",\n    \"likes\": [],\n    \"retweetCount\": 0,\n    \"originalTweetId\": \"689aa0cbec57cdde774c9d6c\",\n    \"_id\": \"689e73b9f4b15f90f7f29dc6\",\n    \"createdAt\": \"2025-08-14T23:39:37.218Z\",\n    \"updatedAt\": \"2025-08-14T23:39:37.218Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "create tweets",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODkzYzFjYjFmY2RmN2YyMzRiYTE0MTMiLCJ1c2VybmFtZSI6ImdpYW5uZWxhIiwiaWF0IjoxNzU1MjEzMTcwLCJleHAiOjE3NTU4MTc5NzB9.PNYdXfxM2RB2s_gdZ4gO0DqTmBsiH91JXb9LOZb9UKA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Giannela/OneDrive/Pictures/Fotos/IMG_20181214_152311_BURST001_COVER.jpg"
+								},
+								{
+									"key": "content",
+									"value": "Hola",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/tweets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"tweets"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Giannela/OneDrive/Pictures/Fotos/IMG_20181214_152311_BURST001_COVER.jpg"
+										},
+										{
+											"key": "content",
+											"value": "Hola",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/tweets",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"tweets"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "260"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"104-Ri6ZGCGEthJrt+shb+bSp1XxaW4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:29:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": \"Hola\",\n    \"mediaUrl\": \"/uploads/1755214161998-418745067.jpg\",\n    \"userName\": \"giannela\",\n    \"likes\": [],\n    \"retweetCount\": 0,\n    \"originalTweetId\": null,\n    \"_id\": \"689e7152f4b15f90f7f29d3d\",\n    \"createdAt\": \"2025-08-14T23:29:22.016Z\",\n    \"updatedAt\": \"2025-08-14T23:29:22.016Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "notifications",
+			"item": [
+				{
+					"name": "get notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODkzYzFjYjFmY2RmN2YyMzRiYTE0MTMiLCJ1c2VybmFtZSI6ImdpYW5uZWxhIiwiaWF0IjoxNzU1MjE0MzQwLCJleHAiOjE3NTU4MTkxNDB9.tcQM5b-fxAKaV15_eDEloR9Vv2Dei1p31pvlRO3Govs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/notifications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"notifications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "462"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ce-qX0Jwk8A/pHc1qs0P4WomUUSbsc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:42:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"_id\": \"689aa0cbec57cdde774c9d6f\",\n        \"recipient\": \"giannela\",\n        \"sender\": \"maria123\",\n        \"type\": \"retweet\",\n        \"tweetId\": \"6893f520347a22f8bd426a3b\",\n        \"isRead\": true,\n        \"createdAt\": \"2025-08-12T02:02:51.422Z\",\n        \"updatedAt\": \"2025-08-12T02:03:05.273Z\",\n        \"__v\": 0\n    },\n    {\n        \"_id\": \"689a9decec57cdde774c9cda\",\n        \"recipient\": \"giannela\",\n        \"sender\": \"maria123\",\n        \"type\": \"like\",\n        \"tweetId\": \"689a96bb29119c406940f687\",\n        \"isRead\": true,\n        \"createdAt\": \"2025-08-12T01:50:36.395Z\",\n        \"updatedAt\": \"2025-08-12T02:02:08.266Z\",\n        \"__v\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "mark as read notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODkzYzFjYjFmY2RmN2YyMzRiYTE0MTMiLCJ1c2VybmFtZSI6ImdpYW5uZWxhIiwiaWF0IjoxNzU1MjE0MzQwLCJleHAiOjE3NTU4MTkxNDB9.tcQM5b-fxAKaV15_eDEloR9Vv2Dei1p31pvlRO3Govs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/notifications/6893f520347a22f8bd426a3b/read",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"notifications",
+								"6893f520347a22f8bd426a3b",
+								"read"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/notifications/6893f520347a22f8bd426a3b/read",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"notifications",
+										"6893f520347a22f8bd426a3b",
+										"read"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 14 Aug 2025 23:47:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	]
+}
