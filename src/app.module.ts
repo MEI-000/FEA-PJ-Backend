@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { TweetModule } from './tweet/tweet.module';
 import { NotificationsModule } from './notifications/notifications.module';
 
+import { FollowsModule } from './follows/follows.module';
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/twitter-clone'),
@@ -14,6 +15,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     UsersModule,
     TweetModule,
     NotificationsModule,
+    FollowsModule
   ],
   controllers: [AppController],
   providers: [AppService],

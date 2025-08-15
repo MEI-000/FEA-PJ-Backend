@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException, NotFoundException, Logger } f
 import { InjectModel } from '@nestjs/mongoose';
 import { Tweet, TweetDocument } from './tweet.schema';
 import { NotificationsService } from '../notifications/notifications.service';
+import { TweetGateway } from './tweet.gateway';
 import { Model } from 'mongoose';
 
 @Injectable()
@@ -11,16 +12,21 @@ export class TweetService {
     constructor(
         @InjectModel(Tweet.name) private tweetModel: Model<TweetDocument>,
         private notificationsService: NotificationsService,
+        private tweetsGateway: TweetGateway,
     ) {}
 
     async create(content: string, mediaUrl: string | null, userName: string): Promise<Tweet> {
-    try {
-        const tweet = new this.tweetModel({ content, mediaUrl, userName });
-        return await tweet.save();
-    } catch (error) {
-        this.logger.error(`Failed to create tweet: ${error.message}`, error.stack);
-        throw new InternalServerErrorException('Failed to create tweet');
-    }
+        try {
+            const tweet = new this.tweetModel({ content, mediaUrl, userName });
+            const saved = await tweet.save();
+
+            console.log("Tweet emitted", saved)
+            this.tweetsGateway.sendNewTweet(saved);
+
+            return saved;
+        } catch (error) {
+            throw new InternalServerErrorException('Failed to create tweet');
+        }
     }
 
     async findAll(): Promise<Tweet[]> {
@@ -59,12 +65,11 @@ export class TweetService {
         const tweet = await this.tweetModel.findById(tweetId);
         if (!tweet) throw new NotFoundException('Tweet not found');
 
-        // toggle like
         const idx = tweet.likes.indexOf(actionUserName);
         if (idx === -1) {
         tweet.likes.push(actionUserName);
         await tweet.save();
-        // send notification to author if liker != author
+
         if (tweet.userName !== actionUserName) {
             await this.notificationsService.create(tweet.userName, actionUserName, 'like', tweet._id.toString());
         }
