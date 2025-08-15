@@ -1,98 +1,229 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# FEA Project Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+A Twitter-like social media backend application built with NestJS, featuring user authentication, tweet management, real-time notifications, and file uploads.
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a comprehensive social media backend that provides RESTful APIs for a Twitter-clone application. The project implements modern backend architecture with real-time features and secure authentication.
 
-## Project setup
+## Features
+
+- **User Authentication**: JWT-based authentication with registration and login
+- **Tweet Management**: Create, read, like, and retweet functionality
+- **Real-time Notifications**: WebSocket-based notification system
+- **File Upload**: Support for image uploads with tweets
+- **User Profiles**: User profile management and updates
+- **Security**: Password hashing with bcrypt and JWT token validation
+
+## Tech Stack
+
+- **Framework**: NestJS (Node.js)
+- **Database**: MongoDB with Mongoose ODM
+- **Authentication**: JWT (JSON Web Tokens) with Passport
+- **Real-time**: Socket.IO for WebSocket connections
+- **File Upload**: Multer for handling multipart/form-data
+- **Validation**: class-validator and class-transformer
+- **Testing**: Jest for unit and e2e testing
+
+## Project Structure
+
+```
+src/
+├── auth/                 # Authentication module
+│   ├── auth.controller.ts
+│   ├── auth.service.ts
+│   ├── jwt.strategy.ts
+│   └── dto/
+├── users/                # User management module
+│   ├── users.controller.ts
+│   ├── users.service.ts
+│   ├── user.schema.ts
+│   └── dto/
+├── tweet/                # Tweet management module
+│   ├── tweet.controller.ts
+│   ├── tweet.service.ts
+│   └── tweet.schema.ts
+├── notifications/        # Real-time notifications
+│   ├── notifications.controller.ts
+│   ├── notifications.service.ts
+│   ├── notifications.gateway.ts
+│   └── notification.schema.ts
+├── filters/              # Global exception filters
+└── main.ts              # Application entry point
+```
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- MongoDB (v6 or higher)
+- npm or yarn package manager
+
+## Installation
 
 ```bash
+# Clone the repository
+$ git clone <repository-url>
+$ cd FEA-PJ-Backend
+
+# Install dependencies
 $ npm install
 ```
 
-## Compile and run the project
+## Environment Setup
+
+Create a `.env` file in the root directory:
+
+```env
+# Database
+MONGODB_URI=mongodb://localhost:27017/fea-project
+
+# JWT
+JWT_SECRET=your-secret-key
+JWT_EXPIRES_IN=7d
+
+# Server
+PORT=3001
+```
+
+## Running the Application
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
+# Development mode with hot reload
 $ npm run start:dev
 
-# production mode
+# Production mode
 $ npm run start:prod
+
+# Debug mode
+$ npm run start:debug
 ```
 
-## Run tests
+The server will start on `http://localhost:3001`
+
+## API Endpoints
+
+### Authentication
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login
+
+### Users
+- `GET /users/profile` - Get user profile (authenticated)
+- `PATCH /users/profile` - Update user profile (authenticated)
+
+### Tweets
+- `GET /tweets` - Get all tweets
+- `GET /tweets/mine` - Get current user's tweets (authenticated)
+- `GET /tweets/:id` - Get specific tweet
+- `POST /tweets` - Create new tweet (authenticated)
+- `POST /tweets/:id/like` - Like/unlike tweet (authenticated)
+- `POST /tweets/:id/retweet` - Retweet (authenticated)
+
+### Notifications
+- `GET /notifications` - Get user notifications (authenticated)
+- `PATCH /notifications/:id/read` - Mark notification as read (authenticated)
+
+## Testing
 
 ```bash
-# unit tests
+# Unit tests
 $ npm run test
 
-# e2e tests
+# End-to-end tests
 $ npm run test:e2e
 
-# test coverage
+# Test coverage
 $ npm run test:cov
+
+# Test in watch mode
+$ npm run test:watch
 ```
 
-## Deployment
+### Postman Collection
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+The project includes a Postman collection for API testing:
+- Import `FEA-project.postman_collection.json` into Postman
+- Run the automated test script `FEA-project.postman_tests.js`
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Development Tools
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Format code
+$ npm run format
+
+# Lint code
+$ npm run lint
+
+# Build for production
+$ npm run build
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## WebSocket Events
 
-## Resources
+The application supports real-time notifications via WebSocket:
 
-Check out a few resources that may come in handy when working with NestJS:
+- **Connection**: Connect to `/` namespace
+- **Events**: 
+  - `notification` - Receive real-time notifications
+  - Join room: `user_${username}` for user-specific notifications
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## File Upload
 
-## Support
+Tweets support image uploads:
+- Endpoint: `POST /tweets` with `multipart/form-data`
+- Field name: `image`
+- Supported formats: JPG, PNG, GIF
+- Files are stored in `./uploads` directory
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Database Schema
 
-## Stay in touch
+### User Schema
+```javascript
+{
+  username: String (unique),
+  email: String (unique),
+  password: String (hashed),
+  contact: String,
+  preference: String,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Tweet Schema
+```javascript
+{
+  content: String,
+  author: ObjectId (User),
+  image: String (file path),
+  likes: [ObjectId (User)],
+  retweets: [ObjectId (User)],
+  originalTweet: ObjectId (Tweet), // for retweets
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### Notification Schema
+```javascript
+{
+  recipient: ObjectId (User),
+  sender: ObjectId (User),
+  type: String (like, retweet, follow),
+  message: String,
+  relatedTweet: ObjectId (Tweet),
+  isRead: Boolean,
+  createdAt: Date
+}
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the MIT License.
