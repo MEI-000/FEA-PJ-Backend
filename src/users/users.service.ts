@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.schema';
-import { Model } from 'mongoose';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { FilterQuery, Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
@@ -64,5 +64,28 @@ export class UsersService {
       contact: user.contact,
       preference: user.preference,
     };
+  }
+
+  async findById(id: string) {
+    return this.userModel
+      .findById(id)
+      .select('username displayName avatarUrl bio')
+      .lean();
+  }
+
+  async search(q: string, limit = 20, page = 0) {
+    const filter: FilterQuery<User> = {
+      $or: [
+        { username: { $regex: q, $options: 'i' } },
+        { displayName: { $regex: q, $options: 'i' } },
+      ],
+    };
+    return this.userModel
+      .find(filter)
+      .select('username displayName avatarUrl')
+      .sort({ username: 1 })
+      .skip(page * limit)
+      .limit(limit)
+      .lean();
   }
 }
